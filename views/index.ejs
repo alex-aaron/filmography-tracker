@@ -27,9 +27,6 @@
         background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
         */
         background: linear-gradient(90deg, #000000, #111111, #1c1c1c, #262626, #262626, #1c1c1c, #111111, #000000);
-
-
-
       }
 
       .main {
@@ -46,6 +43,10 @@
         color: white;
         font-weight: 700;
         font-size: 1.5em;
+      }
+
+      .card {
+        filter: drop-shadow(16px, 16px);
       }
 
       .card-header {
@@ -86,11 +87,11 @@
         <a id="home-page-watchlist-link" href="/movies">Priority Watchlist</a>
     </nav>
 
-    <div class="container card-container d-flex align-items-center justify-content-center">
-      <div class="card text-bg-dark bg-transparent mb-3 text-center border-success shadow-lg">
+    <div class="container card-container d-flex align-items-center justify-content-center border=0">
+      <div class="card text-bg-dark bg-transparent mb-3 text-center border-0">
         <div class="card-body">
           <h5 class="card-header">Add Director</h5>
-          <form action="/" method="POST" class="row g-3">
+          <form action="/" method="POST" class="row g-3" >
             <div class="col-auto">
               <input type="text" class="form-control mb-2" id="add-director-input" name="director" placeholder="Enter Director Name">
             </div>
