@@ -27,8 +27,8 @@
         background-color: #8EC5FC;
         background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
         */
-        background: linear-gradient(90deg, #000000, #111111, #1c1c1c, #262626, #262626, #1c1c1c, #111111, #000000);
       }
+
 
       .main {
         position: fixed;
@@ -41,7 +41,7 @@
       .header {
         font-family: "Source Sans",;
         text-align: center;
-        color: white;
+        color: black;
         font-weight: 700;
         font-size: 1.5em;
       }
@@ -53,7 +53,7 @@
       .card-header {
         font-family: "Source Sans",;
         text-align: center;
-        color: white;
+        color: black;
         font-weight: 500;
         font-size: 1.0em;
       }
@@ -68,11 +68,11 @@
       }
 
       #home-page-nav-header {
-        color: white;
+        color: black;
       }
 
       #home-page-watchlist-link {
-        color: white;
+        color: black;
         font-weight: 400;
         font-size: 1.00em;
       }
@@ -107,8 +107,20 @@
         content: "-"
       }
 
-      h2 {
-        color: white;
+      #results-header {
+        font-family: "Source Sans",;
+        text-align: center;
+        color: black;
+        font-weight: 700;
+        font-size: 1.25em;
+      }
+
+      .director-result-header {
+        font-family: "Source Sans",;
+        text-align: center;
+        color: black;
+        font-weight: 700;
+        font-size: 0.90em;
       }
     
   
@@ -116,13 +128,71 @@
   </head>
   <body>
 
-    <nav class="navbar bg-transparent">
+    <nav class="navbar border-bottom shadow-sm">
       <div class="container justify-content-center">
         <a class="navbar-brand header" id="home-page-nav-header">Filmography Tracker</a>
         <a id="home-page-watchlist-link" href="/movies">Priority Watchlist</a>
     </nav>
 
-    <h2><%= director %></h2>
+    <div class="container d-flex align-items-center justify-content-center mt-3">
+      <h4 id="results-header">Results</h4>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h6 class="director-result-header">John Carpenter Result #1</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h6 class="director-result-header">John Carpenter Result #2</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h6 class="director-result-header">John Carpenter Result #3</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card opacity-50">
+            <div class="card-body text-bg-dark">
+              <h5 class="card-title text-center">John Carpenter</h5>
+              <h6>Known For:</h3>
+              <ul>
+                <li>The Thing</li>
+                <li>Halloween</li>
+                <li>Big Trouble in Little China</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+  
+    <!-- <div id="results-container">
+      <% results.forEach((result) => { %>
+        <h3><%= result.name %></h3>
+        <ul>
+          <% result.knownFor.forEach((title) => { %>
+            <li><%= title.title %></li>
+          <% }) %>
+        </ul>
+      <% }) %>
+    </div> -->
    
 
   
