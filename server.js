@@ -9,12 +9,12 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded( { extended: false }));
 
-mongoose.connect(
-  "mongodb+srv://alex_db_user:2K1cvEoa0BelyCOA@directors.ii3vlqd.mongodb.net/?retryWrites=true&w=majority&appName=Directors")
-  .then(() => console.log('Connected to database'))
-  .catch((err) => {
-    console.log(err);
-});
+// mongoose.connect(
+//   "mongodb+srv://alex_db_user:2K1cvEoa0BelyCOA@directors.ii3vlqd.mongodb.net/?retryWrites=true&w=majority&appName=Directors")
+//   .then(() => console.log('Connected to database'))
+//   .catch((err) => {
+//     console.log(err);
+// });
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -49,7 +49,6 @@ app.post('/', (req, resp) => {
         });
         return { name: e.name, knownFor: knownFor };
       });
-      console.log(mapped);
       resp.render('confirmDirector', {
         results: mapped,
       });

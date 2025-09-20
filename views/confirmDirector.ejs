@@ -22,14 +22,6 @@
     />  
     <style>
 
-      body {
-        /*
-        background-color: #8EC5FC;
-        background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-        */
-      }
-
-
       .main {
         position: fixed;
         top: 50%;
@@ -138,30 +130,45 @@
       <h4 id="results-header">Results</h4>
     </div>
 
-    <div class="row justify-content-center">
-      <div class="col-3">
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <h6 class="director-result-header">John Carpenter Result #1</h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <h6 class="director-result-header">John Carpenter Result #2</h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <h6 class="director-result-header">John Carpenter Result #3</h6>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% let array = []; %>
 
+    <% for (let i = 0; i < results.length; i+=3){ %>
+      <% array = [...array, results.slice(i, i + 3)]; %>
+    <%} %>
+
+    <% array.forEach((e => { %>
+       <div class="row justify-content-center">
+          <% e.forEach((sub) => { %>
+            <%= console.log(sub) %>
+              <div class="col-3">
+                <div class="card shadow-lg">
+                  <div class="card-body">
+                    <h6 class="director-result-header"><%= sub.name %> Result</h6>
+                    <hr>
+                    <p><b>Known For</b></p>
+                    <ul>
+                      <% sub.knownFor.forEach((film) => { %>
+                        <li><%= film.title %></li>
+                      <%}) %>
+                    </ul>
+                    <div class="form-container">
+                      <label for="add-co-director">Add Co-Director if Applicable</label>
+                      <div class="mt-1">
+                        <input type="text" placeholder="Co-Director Name" id="add-co-director">
+                      </div>
+                      <div class="mt-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <%}); %>
+       </div>
+    <%})); %>
+
+
+    
     <!-- <div class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
