@@ -152,13 +152,20 @@
                       <%}) %>
                     </ul>
                     <div class="form-container">
-                      <label for="add-co-director">Add Co-Director if Applicable</label>
-                      <div class="mt-1">
-                        <input type="text" placeholder="Co-Director Name" id="add-co-director">
-                      </div>
-                      <div class="mt-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
+                      <form action="/director" method="POST">
+                        <label for="director">Confirm Director</label>
+                        <div class="mt-1">
+                          <input type="text" placeholder="<%= sub.name%>" id="director" name="director" value="<%= sub.name%>">
+                        </div>
+                        <label for="add-co-director" class="mt-1">Add Co-Director if Applicable</label>
+                        <div class="mt-1">
+                          <input type="text" placeholder="Co-Director Name" id="add-co-director">
+                        </div>
+                        <input type="hidden" value="<%= sub.id%>" name="id">
+                        <div class="mt-2">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

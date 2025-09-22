@@ -115,6 +115,20 @@
       .accordion-button[aria-expanded="true"]::after {
         content: "-"
       }
+
+      #watched-button {
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 15px;
+        border-radius: 40px;
+      }   
+
+      .btn-info {
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 15px;
+        border-radius: 40px;
+      }
     
   
     </style>
@@ -154,7 +168,36 @@
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
               <div class="accordion-body">
-                <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Year</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Streaming</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1994</th>
+                      <td>In the Mouth of Madness</td>
+                      <td><button type="button" class="btn btn-danger" id="watched-button">Not Watched</button></td>
+                      <td><button type="button" class="btn btn-info">Available</button></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1988</th>
+                      <td>Prince of Darkness</td>
+                      <td><button type="button" class="btn btn-danger" id="watched-button">Not Watched</button></td>
+                      <td><button type="button" class="btn btn-info">Available</button></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1986</th>
+                      <td>Big Trouble in Little China</td>
+                      <td><button type="button" class="btn btn-danger" id="watched-button">Not Watched</button></td>
+                      <td><button type="button" class="btn btn-info">Available</button></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -186,7 +229,22 @@
       </div>
     </div>
 
-    
+    <script>
+      const watched = document.querySelectorAll("#watched-button");
+      watched.forEach((button) => {
+        button.addEventListener("click", () => {
+          console.log("event firing");
+          console.log(button.className);
+          if (button.className === "btn btn-success"){
+            button.className = "btn btn-danger";
+            button.innerHTML = "Not Watched";
+          } else {
+            button.className = "btn btn-success"
+            button.innerHTML = "Watched";
+          }
+        });
+      })
+    </script>
 
     
   
