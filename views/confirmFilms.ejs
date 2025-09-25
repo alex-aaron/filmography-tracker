@@ -129,6 +129,16 @@
         line-height: 15px;
         border-radius: 40px;
       }
+
+      .button-container {
+        padding: 10px;
+        margin-top: 20px;
+      }
+
+      #film-results.container {
+        margin-left: 50%;
+        margin-right: 50;
+      }
     
   
     </style>
@@ -141,104 +151,40 @@
         <a id="home-page-watchlist-link" href="/movies">Priority Watchlist</a>
     </nav>
 
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <form action="/" method="POST">
-          <div>
-            <div class="accordion-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Year</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Runtime</th>
-                    <th scope="col">Add</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% films.forEach((film) => { %>
-                    <tr>
-                      <% const idName = film.title + "-id" %>
-                      <% const titleName = film.title + "-title" %>
-                      <% const releaseDateName = film.title + "-releaseDate" %>
-                      <% const addName = film.title + "-add" %>
-                      <% const runtimeName = film.title + "-runtime" %>
-                      <th scope="row"><%= film.releaseDate %></th>
-                      <td><%= film.title %></td>
-                      <td><%= film.runtime %></td>
-                      <td>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="add" name="<%= addName %>" id="flexCheckChecked" checked>
-                          <label class="form-check-label" for="flexCheckChecked">
-                            Uncheck to not add
-                          </label>
-                        </div>
-                      </td>
-                      <input type="hidden" name="<%= idName %>" value="<%= film.id %>">
-                      <input type="hidden" name="<%= titleName %>" value="<%= film.title %>">
-                      <input type="hidden" name="<%= releaseDateName %>" value="<%= film.releaseDate %>">
-                      <input type="hidden" name="<%= runtimeName %>" value="<%= film.runtime %>">
-                    </tr>
-                  <% }); %>
-                </tbody>
-              </table>
-            </div>
-          </div>
+    <div class="container" id="film-results-container">
+      <form action="/" method="POST">
+        <div class="button-container text-center">
           <input type="hidden" name="director", value="<%= director %>">
-          <button type="submit" clas="btn btn-primary">Submit</button>
-        </form>
-      </div>
+          <button type="submit" class="btn btn-primary">Click to Submit Filmography</button>
+        </div>
+        
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Year</th>
+                <th scope="col">Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% films.forEach((film) => { %>
+                <tr>
+                  <% const idName = film.title + "-id" %>
+                  <% const titleName = film.title + "-title" %>
+                  <% const releaseDateName = film.title + "-releaseDate" %>
+                  <% const runtimeName = film.title + "-runtime" %>
+                  <th scope="row"><%= film.releaseDate %></th>
+                  <td><%= film.title %></td>
+                  <input type="hidden" name="<%= idName %>" value="<%= film.id %>">
+                  <input type="hidden" name="<%= titleName %>" value="<%= film.title %>">
+                  <input type="hidden" name="<%= releaseDateName %>" value="<%= film.releaseDate %>">
+                  <input type="hidden" name="<%= runtimeName %>" value="">
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </form>
     </div>
-
-    
-    <!-- <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <form action="/" method="POST">
-          <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item mt-3 rounded-3">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                  <%= director %>
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Year</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Runtime</th>
-                        <th scope="col">Add Film</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% films.forEach((film) => { %>
-                        <tr>
-                          <th scope="row"><%= film.releaseDate %></th>
-                          <td><%= film.title %></td>
-                          <td><%= film.runtime %></td>
-                          <td>
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="add" id="flexCheckChecked" checked>
-                              <label class="form-check-label" for="flexCheckChecked">
-                                Uncheck to not add
-                              </label>
-                            </div>
-                          </td>
-                        </tr>
-                      <% }); %>
-                    </tbody>
-                  </table>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div> -->
-
-  
   </body>
 </html>

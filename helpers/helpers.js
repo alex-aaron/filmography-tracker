@@ -4,8 +4,8 @@ const createFilmsArray = (req) => {
   const entries = Object.entries(req.body);
 
   const object = entries.reduce((acc, current) => {
-    const title = current[0].split("-")[0];
-    const field = current[0].split("-")[1];
+    let [ title, field  ] = current[0].split(/(-runtime|-id|-title|-releaseDate|-add)/g);
+    field = field.slice(1);
     const value = current[1];
     if (!acc[title]){
       acc[title] = {};
@@ -28,7 +28,7 @@ const createFilmsArray = (req) => {
 };
 
 const createStreamingArray = (res) => {
-  const services = ['Tubi TV', 'Pluto TV', 'Max', 'Mubi', 'Criterion Channel', 'Netflix', 'Paramount Plus', 'Kanopy', 'MUBI', 'Amazon Prime Video'];
+  const services = ['Tubi TV', 'Pluto TV', 'HBO Max', 'Mubi', 'Criterion Channel', 'Netflix', 'Paramount Plus', 'Kanopy', 'MUBI', 'Amazon Prime Video'];
   const streaming = [];
   if (res.results.US){
     if (res.results.US.ads){
@@ -44,7 +44,38 @@ const createStreamingArray = (res) => {
   return streaming;
 }
 
+const createStreamingObject = (res) => {
+  const services = ['Tubi TV', 'Pluto TV', 'HBO Max', 'Mubi', 'Criterion Channel', 'Netflix', 'Paramount Plus', 'Kanopy', 'MUBI', 'Amazon Prime Video'];
+  const output = {
+    ads: [],
+    flatrate: [],
+    free: []
+  }
+  if (res.results.US){
+    if (res.results.US.ads){
+      res.results.US.ads.forEach(e => {
+        output.ads.push(e.provider_name);
+      })
+    }
+
+    if (res.results.US.flatrate){
+      res.results.US.flatrate.forEach(e => {
+        output.flatrate.push(e.provider_name);
+      });
+    }
+
+    if (res.results.US.free){
+      res.results.US.free.forEach(e => {
+        output.free.push(e.provider_name);
+      })
+    }
+  } 
+
+  return output;
+}
+
 module.exports = {
   createFilmsArray: createFilmsArray,
   createStreamingArray: createStreamingArray,
+  createStreamingObject: createStreamingObject,
 };
